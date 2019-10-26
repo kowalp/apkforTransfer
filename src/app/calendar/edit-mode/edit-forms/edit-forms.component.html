@@ -1,0 +1,58 @@
+<div class="row">
+<div class="col-md-12">
+<form  (ngSubmit)="SubmitHotel(h)" #h="ngForm">
+<div class="example-container row">
+        <mat-form-field>
+            <label for="AddHotel" >AddHotel</label>
+          <input class="form-control" matInput  ngModel name="HotelName">
+        </mat-form-field>
+</div>
+<button class="btn btn-primary" type="submit">Add Hotel</button>
+</form>
+<form  (ngSubmit)="SubmitHotel(f)" #f="ngForm">
+<div class="example-container row">
+        <mat-form-field>
+            <label for="AddHotel" >AddTransfer</label>
+          <input class="form-control" matInput  ngModel name="HotelName">
+        </mat-form-field>
+</div>
+<button class="btn btn-primary" type="submit">Add Transfer</button>
+</form>
+<form  (ngSubmit)="SubmitHotel(tr)" #tr="ngForm">
+<div class="example-container row">
+        <mat-form-field>
+            <label for="AddHotel" >AddTrip</label>
+          <input class="form-control" matInput  ngModel name="HotelName">
+        </mat-form-field>
+</div>
+<button class="btn btn-primary" type="submit">Add Trip</button>
+</form>
+<form  (ngSubmit)="DeleteHotel(dh)" #dh="ngForm">
+        <div class="example-container row">
+                <mat-form-field>
+                    <label for="DeleteHotel" >DeleteHotel</label>
+                  <input class="form-control" matInput  ngModel name="HotelName">
+                </mat-form-field>
+        </div>
+        <button class="btn btn-primary" type="submit">Delete Hotel</button>
+        </form>
+        <form  (ngSubmit)="DeleteHotel(df)" #df="ngForm">
+        <div class="example-container row">
+                <mat-form-field>
+                    <label for="DeleteHotel" >DeleteTransfer</label>
+                  <input class="form-control" matInput  ngModel name="HotelName">
+                </mat-form-field>
+        </div>
+        <button class="btn btn-primary" type="submit">Delete Transfer</button>
+        </form>
+        <form  (ngSubmit)="DeleteHotel(dtr)" #dtr="ngForm">
+        <div class="example-container row">
+                <mat-form-field>
+                    <label for="DeleteHotel" >DeleteTrip</label>
+                  <input class="form-control" matInput  ngModel name="HotelName">
+                </mat-form-field>
+        </div>
+        <button class="btn btn-primary" type="submit">Delete Trip</button>
+        </form>
+    </div>
+</div>

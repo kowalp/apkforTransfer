@@ -1,0 +1,23 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+body{
+    margin: 0;
+}
+form{
+    margin: 0 30% 0 30%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+   
+}
+mat-form-field{
+    label{
+        text-align: center;
+    }
+}

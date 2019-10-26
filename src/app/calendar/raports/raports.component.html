@@ -1,0 +1,62 @@
+<header>
+        <button mat-button [matMenuTriggerFor]="menu"><a class="button button-purple" href="http://krakowwelcome.com/">
+            <img class="icon" src="https://img.icons8.com/metro/26/000000/world-map.png">
+            Krakow Welcome
+          </a></button>
+        <button mat-button [matMenuTriggerFor]="menu"><a class="button button-orange" routerLink="../home">
+            <img class="icon" src="https://img.icons8.com/color/48/000000/mercedes-benz.png">
+            Booking
+          </a></button>
+        <button mat-button [matMenuTriggerFor]="menu"><a class="button button-purple">
+            <img class="icon" src="https://img.icons8.com/metro/26/000000/calendar-11.png">
+            Calendar
+          </a></button>
+        <button mat-button [matMenuTriggerFor]="menu"><a class="button button-green" routerLink="../raports"routerLinkActive="active">
+            <img class="icon" src="https://img.icons8.com/color/48/000000/literature.png">
+            Raports
+          </a></button>
+        
+        <mat-menu #menu="matMenu">
+        </mat-menu>
+<form >
+    <div class="row time">
+        <div class="col-md-1"></div>
+    <div class="col-md-4 dateInput">
+      <section class="inputs2">
+            <label>
+                    Date Time Range From:
+                    <input [owlDateTimeTrigger]="dt12" [owlDateTime]="dt12"
+                           ngModel name="FromDate"
+                           [selectMode]="'rangeFrom'">
+                    <owl-date-time #dt12></owl-date-time>
+                </label>
+      </section>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-4 dateInput">
+      <section class="inputs2">
+            <label>
+                    Date Time Range To:
+                    <input [owlDateTimeTrigger]="dt13" [owlDateTime]="dt13"
+                           ngModel name="ToDate"
+                           [selectMode]="'rangeTo'">
+                    <owl-date-time #dt13></owl-date-time>
+                </label>
+      </section>
+    </div>
+    </div>
+    <div class="row" >
+    <div class="col-md-12">
+    <section class="buttonAnimated sumbitBtn">
+      <button type="submit" >
+        <span class="text">GeneratePDF</span>
+        <span class="line -right"></span>
+        <span class="line -top"></span>
+        <span class="line -left"></span>
+        <span class="line -bottom"></span>
+      </button>
+    </section>
+    </div>
+    </div>
+    </form>
+</header>

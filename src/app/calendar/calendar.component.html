@@ -1,0 +1,143 @@
+<div class="header">
+  <button mat-button [matMenuTriggerFor]="menu"><a class="button button-purple" href="http://krakowwelcome.com/">
+      <img class="icon" src="https://img.icons8.com/metro/26/000000/world-map.png">
+      Krakow Welcome
+    </a></button>
+  <button mat-button [matMenuTriggerFor]="menu"><a class="button button-orange" routerLink="../home">
+      <img class="icon" src="https://img.icons8.com/color/48/000000/mercedes-benz.png">
+      Booking
+    </a></button>
+  <button mat-button [matMenuTriggerFor]="menu"><a class="button button-purple" routerLinkActive="active">
+      <img class="icon" src="https://img.icons8.com/metro/26/000000/calendar-11.png">
+      Calendar
+    </a></button>
+  <button mat-button [matMenuTriggerFor]="menu"><a class="button button-green" routerLink="../raports">
+      <img class="icon" src="https://img.icons8.com/color/48/000000/literature.png">
+      Raports
+    </a></button>
+  
+  <mat-menu #menu="matMenu">
+  </mat-menu>
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Previous
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Today
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Next
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Month
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Week
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Day
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+    (eventTimesChanged)="eventTimesChanged($event)"
+  >
+  </mwl-calendar-day-view>
+</div>
+
+<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    
+    <div>
+      <pre>
+          <div class="jsonShow"><h4>Name:</h4><i class="fas fa-user-alt"></i><p>{{modalData?.event.Name}}</p><br></div>
+          <div class="jsonShow"><h4>Date:</h4><i class="far fa-clock"></i><p>{{modalData?.event.start.toUTCString()}}</p><br></div>
+          <div class="jsonShow"><h4>Phone:</h4><i class="fas fa-mobile-alt"></i><p>{{modalData?.event.Phone}}</p><br></div>
+          <div class="jsonShow"><h4>Transfer:</h4><i class="fas fa-exchange-alt"></i><p>{{modalData?.event.Transfer}}</p><br></div>
+          <div class="jsonShow"><h4>Trip:</h4><i class="fas fa-suitcase-rolling"></i><p>{{modalData?.event.Trip}}</p><br></div>
+          <div class="jsonShow"><h4>PersonCount:</h4><i class="fas fa-users"></i><p>{{modalData?.event.PersonCount}}</p><br></div>
+
+
+        </pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>

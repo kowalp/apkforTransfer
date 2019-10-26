@@ -1,0 +1,100 @@
+
+<br /><br /><br />
+
+<h3>
+  Edit events
+  <button class="btn btn-primary pull-right" (click)="addEvent()">
+    Add new
+  </button>
+  <div class="clearfix"></div>
+</h3>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Telefon</th>
+        <th>Transfer</th>
+        <th>Trip</th>
+        <th>Liczba Osób</th>
+        <th>Zaczyna się</th>
+        <th>Kończy</th>
+        <th>Usuń</th>
+
+      </tr>
+    </thead>
+    <tbody>
+     
+      <tr *ngFor="let event of events">
+          <td>
+              <input
+                type="text"
+                [(ngModel)]="event.title"
+                name="title"
+                (change)="refresh.next()"
+                #name
+              />
+            </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="event.Phone"
+            name="phone"
+            (change)="refresh.next()"
+            #phone
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="event.Transfer"
+            name="transfer"
+            (change)="refresh.next()"
+            #transfer
+          />  
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="event.Trip"
+            name="trip"
+            (change)="refresh.next()"
+            #trip
+          />
+        </td>
+        <td>
+          <input
+            type="text"
+            [(ngModel)]="event.PersonCount"
+            (change)="refresh.next()"
+            name="numberOfPeople"
+            #personCount
+          />
+        </td>
+        <td>
+         
+          <input  [(ngModel)]="event.start" (ngModelChange)="refresh.next()" [owlDateTimeTrigger]="dt" name="start" type="text" [owlDateTime]="dt" required #DepartureTime>
+            <owl-date-time #dt></owl-date-time>
+        </td>
+        <td>
+            <input [(ngModel)]="event.end" (ngModelChange)="refresh.next()" [owlDateTimeTrigger]="dd" name="end" type="text" [owlDateTime]="dd" required #ArrivalTime>
+            <owl-date-time #dd></owl-date-time>
+          
+        </td>
+        
+        <td>
+          <button class="btn btn-danger" (click)="deleteEvent(event)" type="button">
+            Delete
+          </button>
+        </td>
+        <td>
+            <button class="btn btn-danger" (click)="saveEvent(ArrivalTime.value, DepartureTime.value, personCount.value, trip.value, transfer.value, phone.value, name.value)" type="submit">
+              Save
+            </button>
+          </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>

@@ -1,0 +1,27 @@
+<header>
+<form (ngSubmit)="onSubmit(name.value, email.value, password.value, role.value)" #f="ngForm" autocomplete="off">
+<div class="example-container">
+  <mat-form-field>
+    <input class="form" ngModel #name name="Name" matInput placeholder="Name" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="email" #email name="email"  class="form" ngModel matInput placeholder="Enter your email" required>
+    <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+  </mat-form-field>
+  <mat-form-field >
+    <input class="form" ngModel #password [type]="hide ? 'password' : 'text'" name="Password" matInput placeholder="Password" required>
+    <mat-icon matSuffix  minlength="5" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select Role" #role name="Role" ngModel required>
+      <mat-option value="master">Master</mat-option>
+      <mat-option value="driver">Driver</mat-option>
+      <mat-option value="receptionist">Receptionist</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button type="submit" class="btn btn-success" [disabled]="!f.valid">Register</button>
+</div>
+
+</form>
+</header>
